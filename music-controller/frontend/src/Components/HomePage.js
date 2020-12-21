@@ -9,7 +9,7 @@ import {
     Redirect,
 } from "react-router-dom";
 import Room from "./Room";
-import {Grid, ButtonGroup , Typography, Button} from "@material-ui/core"
+import {Grid, ButtonGroup , Typography, Button} from "@material-ui/core";
 
 class HomePage extends Component {
 
@@ -18,6 +18,7 @@ class HomePage extends Component {
         this.state={
             roomCode: null,
         }
+        this.clearRoomCode= this.clearRoomCode.bind(this);
     }
 
     async componentDidMount(){
@@ -52,11 +53,19 @@ class HomePage extends Component {
                     </ButtonGroup>
                 </Grid>
 
-
+ 
             </Grid>
 
         );
     }
+
+    clearRoomCode() {
+        this.setState({
+            roomCode:null,
+        })
+    }
+
+
   render(){  return ( <div className = "" >
         <Router>
             <Switch>
@@ -70,7 +79,11 @@ class HomePage extends Component {
                 </Route>
                 <Route path="/join" component={RoomJoinPage}/>
                 <Route path="/create" component={CreateRoomPage}/>
-                <Route path="/room/:roomCode" component={Room}/>
+                <Route path="/room/:roomCode" 
+                render={(props)=> {
+                    return <Room {...props}
+                     leaveRoomCallback = {this.clearRoomCode}/>}}
+                      component={Room}/>
             </Switch>
         </Router>
         </div>
