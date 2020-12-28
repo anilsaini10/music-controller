@@ -18,7 +18,7 @@ class HomePage extends Component {
         this.state={
             roomCode: null,
         }
-        this.clearRoomCode= this.clearRoomCode.bind(this);
+        this.clearRoomCode = this.clearRoomCode.bind(this);
     }
 
     async componentDidMount(){
